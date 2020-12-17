@@ -1,18 +1,17 @@
 import React from 'react'
 
-function Person({ details }) {
+
+export default function Person(props) {
+  const { details } = props
   if (!details) {
     return <h3>Working fetching user details...</h3>
+  } else if(details){
+    return(
+      <div>
+          <h2>Welcome to the team {details.username}!</h2>
+          <p>Is {details.email} your correct email?</p>
+          <button>Yes</button><button>No</button>
+      </div>
+    )
   }
-
-  return (
-    <div>
-      <h2>Name: {details.username}</h2>
-      <p>Email: {details.email}</p>
-      <p>Password: {details.password}</p>
-      <p>Terms Of Service: {details.tos}</p>
-    </div>
-  )
 }
-
-export default Person

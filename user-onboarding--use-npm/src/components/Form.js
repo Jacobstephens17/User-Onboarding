@@ -20,7 +20,7 @@ export default function newForm (props){
     return(
             <form onSubmit={onSubmit}>
                 <div>
-                    <div>{errors.username}</div>
+                    <div>{errors.first_name}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
                     <div>{errors.tos}</div>

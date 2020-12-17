@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import './App.css';
 import './App.css'; 
 import Person from './components/Person'
 import axios from 'axios'
@@ -24,7 +24,7 @@ const initialList = [];
 const initialDisabled = true;
 
 function App() {
-  const [people, setPeople] = useState([initialList]); // array of people objects
+  let [people, setPeople] = useState(initialList); // array of people objects
   const [formValues, setFormValues] = useState(emptyForm); // object
   const [formErrors, setFormErrors] = useState(initialFormErrors); // object
   const [disabled, setDisabled] = useState(initialDisabled); // boolean
@@ -35,23 +35,19 @@ function App() {
     axios
       .get("https://reqres.in/api/users")
       .then((res) => {
-        const recievedPeople = (res.data.data);
-        recievedPeople.forEach((item) =>{
-         setPeople(item)
-         console.log(item.first_name)
-        })
+        setPeople = (res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  
+
   const postNewPeople = (newUser) => {
     axios.post('https://reqres.in/api/users', newUser)
     .then((res) => {
       setPeople([res.data, ...people]);
-      setFormValues(formValues);
+      setFormValues(emptyForm);
     })
     .catch((err) => {
     })
@@ -86,9 +82,7 @@ function App() {
       username: formValues.username.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      tos: ["tos"].filter(
-        (tos) => formValues[tos]
-      ),
+      tos: formValues.tos,
     };
     postNewPeople(newPerson);
   };
@@ -106,12 +100,17 @@ function App() {
   return (
     <div>
       <Form
-      values={formValues}
-      change={inputChange}
-      submit={formSubmit}
-      disabled={disabled}
-      errors={formErrors}/>
-      <Person/>
+        values={formValues}
+        change={inputChange}
+        submit={formSubmit}
+        disabled={disabled}
+        errors={formErrors}
+        />
+        
+        <Person/>
+        {people.map((person) => {
+        return <Person key = {person.id} details ={person}/>
+      })}
     </div>
   );
 }
