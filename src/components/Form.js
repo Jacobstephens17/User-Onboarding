@@ -15,8 +15,6 @@ export default function newForm (props){
       change(name, valueToUse);
     };
 
-
-
     return(
             <form onSubmit={onSubmit}>
                 <div>
@@ -76,8 +74,8 @@ export default function newForm (props){
                         >
                         </input>
                 </label>
-            <button id='submitButton' disabled={disabled} >Submit</button>
-                
+            
+            <button id='submitButton' disabled={disabled} >Submit</button>    
             
             </form>
 

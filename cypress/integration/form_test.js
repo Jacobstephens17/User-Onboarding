@@ -47,6 +47,7 @@ describe("User-Onboarding Tests", () => {
       it("submit button disabled until both inputs filled out", () => {
         submitButton().should("be.disabled");
         userInput().type("Jacob Stephens");
+        userInput().should("have.value","Jacob Stephens")
         submitButton().should("be.disabled");
         emailInput().type("jacobstephens.work@gmail.com");
         submitButton().should("be.disabled");
@@ -55,4 +56,5 @@ describe("User-Onboarding Tests", () => {
         tosButton().click()
         submitButton().click()
       });
+      
 })  
