@@ -69,13 +69,14 @@ export default function newForm (props){
                     Terms of Service
                         <input
                          type="checkbox"
+                         id="tos"
                          name="tos"
                          checked={values.tos}
                          onChange={onChange}
                         >
                         </input>
                 </label>
-            <button disabled={disabled}>Submit</button>
+            <button id='submitButton' disabled={disabled} >Submit</button>
                 
             
             </form>
